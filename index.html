@@ -20,36 +20,38 @@
 </head>
 
 <script>
-(async () => {
-  const placeholders = document.querySelectorAll('[data-include]');
-  for (const el of placeholders) {
-    const url = el.getAttribute('data-include');
-    try {
-      const res = await fetch(url, { cache: 'no-cache' });
-      if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
-      const html = await res.text();
+document.addEventListener('DOMContentLoaded', () => {
+  (async () => {
+    const placeholders = document.querySelectorAll('[data-include]');
+    for (const el of placeholders) {
+      const url = el.getAttribute('data-include');
+      try {
+        const res = await fetch(url, { cache: 'no-cache' });
+        if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
+        const html = await res.text();
 
-      // Insert HTML
-      const tmp = document.createElement('div');
-      tmp.innerHTML = html;
+        const tmp = document.createElement('div');
+        tmp.innerHTML = html;
 
-      // Execute any <script> tags inside the included file
-      for (const oldScript of tmp.querySelectorAll('script')) {
-        const s = document.createElement('script');
-        if (oldScript.src) { s.src = oldScript.src; }
-        else { s.textContent = oldScript.textContent; }
-        document.body.appendChild(s);
-        oldScript.remove();
+        // Make <script> tags inside partials execute
+        for (const oldScript of tmp.querySelectorAll('script')) {
+          const s = document.createElement('script');
+          if (oldScript.src) s.src = oldScript.src;
+          else s.textContent = oldScript.textContent;
+          document.body.appendChild(s);
+          oldScript.remove();
+        }
+
+        el.replaceWith(...tmp.childNodes);
+      } catch (e) {
+        console.error('Include failed:', url, e);
+        el.innerHTML = `<!-- include failed: ${url} -->`;
       }
-
-      el.replaceWith(...tmp.childNodes);
-    } catch (e) {
-      console.error('Include failed:', url, e);
-      el.innerHTML = `<!-- include failed: ${url} -->`;
     }
-  }
-})();
+  })();
+});
 </script>
+
 
 <body>
     <!-- Start Top Nav -->
@@ -263,9 +265,7 @@
 
 
     <!-- Start Footer -->
-    <footer class="bg-dark" id="tempaltemo_footer"></footer>
-        <div data-include="partials/footer.html"></div>
-    </footer>
+    <div data-include="partials/footer.html"></div>
     <!-- Close Footer -->
 
     <!-- Start Script -->
