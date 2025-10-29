@@ -10,6 +10,7 @@
           <li><a class="text-decoration-none" href="shop.html?category=Wedding Dress">Wedding Dresses</a></li>
           <li><a class="text-decoration-none" href="shop.html?category=Evening Dress">Evening Dresses</a></li>
           <li><a class="text-decoration-none" href="shop.html?category=Classic Dress">Classic Dresses</a></li>
+          <li><a class="text-decoration-none" href="shop.html?category=Scarf">Scarves</a></li>
         </ul>
       </div>
 
@@ -25,66 +26,61 @@
         </ul>
       </div>
 
-            <!-- Contact / Brand Info -->
+      <!-- Contact / Brand + Newsletter -->
       <div class="col-md-4 pt-5">
-        <h2 class="h2 text-warning border-bottom pb-3 border-light logo">EDA Store</h2>
+        <h2 class="h2 text-gold border-bottom pb-3 border-light logo">ED ATELIER</h2>
         <ul class="list-unstyled text-light footer-link-list">
           <li>
             <i class="fas fa-map-marker-alt fa-fw"></i>
-            <a href="https://maps.app.goo.gl/AfVPBHqkRxHp7Bxm6">EDA by Enaam Dirani, Ansar, Lebanon</a>
+            <a class="text-decoration-none" href="https://maps.app.goo.gl/AfVPBHqkRxHp7Bxm6" target="_blank" rel="noopener">EDA by Enaam Dirani, Ansar, Lebanon</a>
           </li>
           <li>
             <i class="fa fa-phone fa-fw"></i>
-            <a href="tel:03836748">03 836 748</a>
+            <a class="text-decoration-none" href="tel:03836748">03 836 748</a>
           </li>
           <li>
             <i class="fa fa-envelope fa-fw"></i>
-            <a href="mailto:enaam.dirani@gmail.com">enaam.dirani@gmail.com</a>
+            <a class="text-decoration-none" href="mailto:enaam.dirani@gmail.com">enaam.dirani@gmail.com</a>
           </li>
         </ul>
-      </div>
-      
-    </div>
 
-    <div class="row text-light mb-4">
-      <div class="col-12 mb-3">
-        <div class="w-100 my-3 border-top border-light"></div>
-      </div>
+        <!-- Newsletter subscribe (Formspree) -->
+        <form id="subscribe-form"
+              action="https://formspree.io/f/manljbnr"
+              method="POST"
+              class="input-group mb-2 mt-3">
+          <input type="email"
+                class="form-control bg-dark border-light text-light"
+                name="email"
+                placeholder="Email address"
+                required>
+          <button class="input-group-text btn-warning text-dark" type="submit">Subscribe</button>
+        </form>
+        <small id="subscribe-status" class="text-light-50"></small>
 
-      <div class="col-auto me-auto">
-        <ul class="list-inline text-left footer-icons">
-          <li class="list-inline-item border border-light rounded-circle text-center">
-            <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
-          </li>
-          <li class="list-inline-item border border-light rounded-circle text-center">
-            <a class="text-light text-decoration-none" target="_blank" href="https://www.instagram.com/enaamdirani.atelier"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
-          </li>
-          <li class="list-inline-item border border-light rounded-circle text-center">
-            <a class="text-light" href="https://api.whatsapp.com/send?phone=9613836748" target="_blank"><i class="fab fa-whatsapp fa-sm fa-fw me-2"></i></a>
-          </li>
-        </ul>
-      </div>
+        <script>
+        document.getElementById('subscribe-form').addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const form = e.target;
+          const status = document.getElementById('subscribe-status');
+          status.textContent = 'Subscribing…';
 
-      <div class="col-auto">
-        <label class="sr-only" for="subscribeEmail">Email address</label>
-        <div class="input-group mb-2">
-          <input type="text" class="form-control bg-dark border-light" id="subscribeEmail" placeholder="Email address">
-          <div class="input-group-text btn-warning text-dark">Subscribe</div>
-        </div>
-      </div>
-    </div>
-  </div>
+          try {
+            const res = await fetch(form.action, {
+              method: 'POST',
+              body: new FormData(form),
+              headers: { 'Accept': 'application/json' }
+            });
+            if (res.ok) {
+              form.reset();
+              status.textContent = 'You’re in! Check your inbox.';
+            } else {
+              status.textContent = 'Couldn’t subscribe. Try again.';
+            }
+          } catch {
+            status.textContent = 'Network error — please try again.';
+          }
+        });
+        </script>
 
-  <div class="w-100 bg-black py-3">
-    <div class="container">
-      <div class="row pt-2">
-        <div class="col-12">
-          <p class="text-left text-light mb-0">
-            © 2025 EDA by Enaam Dirani
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
 <!-- End Footer -->

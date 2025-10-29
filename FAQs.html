@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>EDA</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="assets/img/logo_01.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo_01.png">
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/templatemo.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+
+</head>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  (async () => {
+    const placeholders = document.querySelectorAll('[data-include]');
+    for (const el of placeholders) {
+      const url = el.getAttribute('data-include');
+      try {
+        const res = await fetch(url, { cache: 'no-cache' });
+        if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
+        const html = await res.text();
+
+        const tmp = document.createElement('div');
+        tmp.innerHTML = html;
+
+        // Make <script> tags inside partials execute
+        for (const oldScript of tmp.querySelectorAll('script')) {
+          const s = document.createElement('script');
+          if (oldScript.src) s.src = oldScript.src;
+          else s.textContent = oldScript.textContent;
+          document.body.appendChild(s);
+          oldScript.remove();
+        }
+
+        el.replaceWith(...tmp.childNodes);
+      } catch (e) {
+        console.error('Include failed:', url, e);
+        el.innerHTML = `<!-- include failed: ${url} -->`;
+      }
+    }
+  })();
+});
+</script>
+
+<body>
+    <!-- Start Top Nav -->
+    <div data-include="partials/top_nav.html"></div>
+    <!-- Close Top Nav -->
+
+
+    <!-- Start Header -->
+    <div data-include="partials/header.html"></div>
+    <!-- Close Header -->
+
+    <!-- Start Search Bar -->
+    <div data-include="partials/search-bar.html"></div>
+    <!-- Close Search Bar -->
+
+    <!-- Start FAQ Section -->
+    <section class="container my-5">
+    <h2 class="text-center mb-4">Frequently Asked Questions</h2>
+
+    <div class="accordion" id="faqAccordion">
+
+        <div class="accordion-item border-0 border-bottom">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+            + How does the dress rental process work?
+            </button>
+        </h2>
+        <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+            Simply browse our collection, choose your favorite dress, select your rental dates, and proceed to checkout.
+            We’ll prepare it for pickup or delivery. After your event, return it in the same packaging — we handle the cleaning!
+            </div>
+        </div>
+        </div>
+
+        <div class="accordion-item border-0 border-bottom">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+            + How long can I rent a dress for?
+            </button>
+        </h2>
+        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+            Our standard rental period is 4 days, but you can extend it for a small fee depending on availability.
+            </div>
+        </div>
+        </div>
+
+        <div class="accordion-item border-0 border-bottom">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+            + Do you offer delivery and pickup?
+            </button>
+        </h2>
+        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+            Yes! We deliver and pick up within selected areas. You can also choose in-store pickup and return if you prefer.
+            </div>
+        </div>
+        </div>
+
+        <div class="accordion-item border-0 border-bottom">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+            + What if the dress doesn’t fit?
+            </button>
+        </h2>
+        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+            We recommend booking a fitting appointment before renting. If the size still doesn’t fit, contact us within 24 hours and we’ll help exchange it when possible.
+            </div>
+        </div>
+        </div>
+
+        <div class="accordion-item border-0 border-bottom">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+            + Are the dresses cleaned after each rental?
+            </button>
+        </h2>
+        <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+            Absolutely. Every dress is professionally cleaned and sanitized after each use to ensure top quality and hygiene.
+            </div>
+        </div>
+        </div>
+
+        <div class="accordion-item border-0 border-bottom">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+            + What if I damage the dress?
+            </button>
+        </h2>
+        <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+            Minor wear and tear is covered, but major damage or loss may incur a repair or replacement fee.
+            </div>
+        </div>
+        </div>
+
+    </div>
+    </section>
+    <!-- End FAQ Section -->
+
+
+    <!-- Start Footer -->
+    <div data-include="partials/footer.html"></div>
+    <!-- Close Footer -->
+
+    <!-- Start Script -->
+    <div data-include="partials/scripts.html"></div>
+    <!-- End Script -->
+</body>
+
+</html>
