@@ -1,3 +1,24 @@
 /*
 Custom Css
 */
+/* Gold scrolling text bar under services */
+.eda-gold-bar{
+  background:#e6d46a;              /* gold */
+  border-radius:16px;
+  padding:16px 22px;
+  box-shadow:0 10px 24px rgba(0,0,0,.08);
+  max-width:900px;                  /* nice readable width */
+}
+
+.eda-gold-bar p{
+  color:#111154;                    /* your requested text color */
+  font-weight:600;
+  letter-spacing:.2px;
+  text-align:center;
+  font-size:1.05rem;
+}
+
+/* Hide default controls/indicators for a clean bar */
+.eda-gold-bar .carousel-control-prev,
+.eda-gold-bar .carousel-control-next,
+.eda-gold-bar .carousel-indicators{ display:none !important; }
