@@ -236,40 +236,7 @@
     <!-- Start Script -->
     <div data-include="partials/scripts.html"></div>
     <!-- End Script -->
-     <!-- Bootstrap bundle (enables modals, dropdowns, etc.) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- ✅ Universal Partials Loader -->
-<script>
-document.addEventListener("DOMContentLoaded", async () => {
-  const includes = document.querySelectorAll("[data-include]");
-  for (const el of includes) {
-    const url = el.getAttribute("data-include");
-    try {
-      const res = await fetch(url, { cache: "no-cache" });
-      const html = await res.text();
-      const tmp = document.createElement("div");
-      tmp.innerHTML = html;
-
-      // execute <script> tags inside partials
-      for (const oldScript of tmp.querySelectorAll("script")) {
-        const s = document.createElement("script");
-        if (oldScript.src) s.src = oldScript.src;
-        else s.textContent = oldScript.textContent;
-        document.body.appendChild(s);
-        oldScript.remove();
-      }
-
-      el.replaceWith(...tmp.childNodes);
-    } catch (err) {
-      console.error("Include failed:", url, err);
-    }
-  }
-
-  // dispatch event so pages like shop can react
-  document.dispatchEvent(new Event("partials:loaded"));
-});
-</script>
 
 </body>
 
