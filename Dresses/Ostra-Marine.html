@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>EDA - Ostra Marine</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="../assets/img/logo_01.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/img/logo_01.png">
+
+    <!-- Fix CSS paths by adding ../ -->
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/templatemo.css">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="../assets/css/fontawesome.min.css">
+
+    <!-- Fix script paths -->
+    <script src="../assets/js/jquery-1.11.0.min.js"></script>
+    <script src="../assets/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/templatemo.js"></script>
+    <script src="../assets/js/custom.js"></script>
+
+    <style>
+        /* Add smooth transition for image swap */
+        #product-detail {
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        /* Add hover effect for thumbnail images */
+        .carousel-inner a img {
+            transition: transform 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        
+        .carousel-inner a img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Add active state for currently displayed thumbnail */
+        .carousel-inner a.active img {
+            border: 2px solid #ad9476;
+        }
+
+        /* Fix image paths in CSS */
+        .bg-success {
+            background-color: #fff !important;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-success {
+            background-color: #ad9476;
+            border-color: #8D765B;
+        }
+
+        .btn-success:hover {
+            background-color: #8D765B;
+            border-color: #8D765B;
+        }
+
+        .text-success {
+            color: #ad9476 !important;
+        }
+    </style>
+
+    <!-- Load partials script -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      (async () => {
+        const placeholders = document.querySelectorAll('[data-include]');
+        for (const el of placeholders) {
+          const url = el.getAttribute('data-include');
+          try {
+            const res = await fetch(url, { cache: 'no-cache' });
+            if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
+            const html = await res.text();
+
+            const tmp = document.createElement('div');
+            tmp.innerHTML = html;
+
+            // Make <script> tags inside partials execute
+            for (const oldScript of tmp.querySelectorAll('script')) {
+              const s = document.createElement('script');
+              if (oldScript.src) s.src = oldScript.src;
+              else s.textContent = oldScript.textContent;
+              document.body.appendChild(s);
+              oldScript.remove();
+            }
+
+            el.replaceWith(...tmp.childNodes);
+          } catch (e) {
+            console.error('Include failed:', url, e);
+            el.innerHTML = `<!-- include failed: ${url} -->`;
+          }
+        }
+      })();
+    });
+    </script>
+</head>
+
+<body>
+    <!-- Start Top Nav -->
+    <div data-include="../partials/top_nav.html"></div>
+    <!-- Close Top Nav -->
+
+    <!-- Start Header -->
+    <div data-include="../partials/header.html"></div>
+    <!-- Close Header -->
+
+    <!-- Start Search Bar -->
+    <div data-include="../partials/search-bar.html"></div>
+    <!-- Close Search Bar -->
+
+    <!-- Open Content -->
+    <section class="bg-light">
+        <div class="container pb-5">
+            <div class="row">
+                <div class="col-lg-5 mt-5">
+                    <div class="card mb-3">
+                        <img class="card-img img-fluid" src="../assets/img/Ostra Marine/1.jpg" alt="Ostra Marine Dress" id="product-detail">
+                    </div>
+                    <div class="row">
+                        <!--Start Controls-->
+                        <div class="col-1 align-self-center">
+                            <a href="#multi-item-example" role="button" data-bs-slide="prev">
+                                <i class="text-dark fas fa-chevron-left"></i>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </div>
+                        <!--End Controls-->
+                        <!--Start Carousel Wrapper-->
+                        <div id="multi-item-example" class="col-10 carousel slide carousel-multi-item" data-bs-ride="carousel">
+                            <!--Start Slides-->
+                            <div class="carousel-inner product-links-wap" role="listbox">
+                                <!--First slide-->
+                                <div class="carousel-item active">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <a href="#" role="button" aria-label="View larger image">
+                                                <img class="card-img img-fluid thumbnail-img" src="../assets/img/Ostra Marine/1.jpg" alt="Ostra Marine Dress view 1">
+                                            </a>
+                                        </div>
+                                        <div class="col-4">
+                                            <a href="#" role="button" aria-label="View larger image">
+                                                <img class="card-img img-fluid thumbnail-img" src="../assets/img/Ostra Marine/2.jpg" alt="Ostra Marine Dress view 2">
+                                            </a>
+                                        </div>
+                                        <div class="col-4">
+                                            <a href="#" role="button" aria-label="View larger image">
+                                                <img class="card-img img-fluid thumbnail-img" src="../assets/img/Ostra Marine/3.jpg" alt="Ostra Marine Dress view 3">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--End Slides-->
+                        </div>
+                        <!--End Carousel Wrapper-->
+                        <!--Start Controls-->
+                        <div class="col-1 align-self-center">
+                            <a href="#multi-item-example" role="button" data-bs-slide="next">
+                                <i class="text-dark fas fa-chevron-right"></i>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                        <!--End Controls-->
+                    </div>
+                </div>
+                <!-- col end -->
+                <div class="col-lg-7 mt-5">
+                    <div class="card">
+                        <div class="card-body bg-dark">
+                            <h1 class="h2 text-brown">Ostra Marine</h1>
+
+                            <h6 class="text-offwhite">Description:</h6>
+                            <p class="text-muted">Ostra Marine, an enchanting dress inspired by the sea's beauty. This stunning creation combines delicate detailing with modern elegance, perfect for making a statement on your special day.</p>
+                            
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <h6 class="text-offwhite">Available Size:</h6>
+                                </li>
+                                <li class="list-inline-item">
+                                    <p class="text-muted"><strong>Custom Size</strong></p>
+                                </li>
+                            </ul>
+
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <h6 class="text-offwhite">Available Color:</h6>
+                                </li>
+                                <li class="list-inline-item">
+                                    <p class="text-muted"><strong>Marine Blue</strong></p>
+                                </li>
+                            </ul>
+
+                            <h6 class="text-offwhite">Features:</h6>
+                            <ul class="list-unstyled text-muted pb-3">
+                                <li>Premium quality fabric</li>
+                                <li>Hand-crafted details</li>
+                                <li>Perfect for special occasions</li>
+                                <li>Elegant design</li>
+                                <li>Custom sizing available</li>
+                                <li>Professional alterations service</li>
+                            </ul>
+
+                            <div class="row">
+                                <div class="col-auto">
+                                    <a href="../contact.html" class="btn btn-success btn-lg px-4">Contact us for more details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Close Content -->
+
+    <!-- Start Footer -->
+    <div data-include="../partials/footer.html"></div>
+    <!-- End Footer -->
+
+    <!-- Image Swap Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mainImage = document.getElementById('product-detail');
+            const thumbnailLinks = document.querySelectorAll('.carousel-inner a');
+            
+            thumbnailLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const thumbnailImg = this.querySelector('img');
+                    const newMainImageUrl = thumbnailImg.src;
+                    const currentMainImageUrl = mainImage.src;
+                    
+                    // Swap images
+                    mainImage.style.opacity = '0';
+                    thumbnailImg.src = currentMainImageUrl;
+                    
+                    setTimeout(() => {
+                        mainImage.src = newMainImageUrl;
+                        mainImage.style.opacity = '1';
+                    }, 200);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

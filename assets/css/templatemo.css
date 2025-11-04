@@ -50,14 +50,14 @@ body, ul, li, p, a, label, input, div {
 }
 /* General */
 .logo { font-weight: 500 !important;}
-.text-warning {  color: #AD9476 !important;}
+.text-warning {  color: hwb(33 46% 32%) !important;}
 .text-muted { color: #bcbcbc !important;}
 .text-success { color: #AD9476   !important;}
 .text-light { color: #cfd6e1 !important;}
 .bg-dark { background-color: #002147 !important;}
 .bg-light { background-color: #BDAC96 !important;}
-.bg-black { background-color: #15317e !important;}
-.bg-success { background-color: #AD9476   !important;}
+.bg-black { background-color: #002147 !important;}
+.bg-success { background-color: #ffffff !important;}
 .btn-success {
   background-color: #AD9476   !important;
   border-color: #AD9476   !important;
@@ -70,7 +70,7 @@ body, ul, li, p, a, label, input, div {
 /* Nav */
 #templatemo_nav_top { min-height: 40px;}
 #templatemo_nav_top * { font-size: .9em !important;}
-#templatemo_main_nav a { color: #15317e;}
+#templatemo_main_nav a { color: #002147;}
 #templatemo_main_nav a:hover { color: #AD9476  ;}
 #templatemo_main_nav .navbar .nav-icon { margin-right: 20px;}
 
@@ -98,7 +98,7 @@ body, ul, li, p, a, label, input, div {
   visibility: visible;
   opacity: 1;
 }
-.card.product-wap a { color: #000;}
+.card.product-wap a { color: #AD9476;}
 #carousel-related-product .slick-slide:focus { outline: none !important;}
 #carousel-related-product .slick-dots li button:before {
   font-size: 15px;
@@ -150,7 +150,7 @@ body, ul, li, p, a, label, input, div {
   transition: .5s;
 }
 #tempaltemo_footer ul.footer-icons li:hover i {
-  color: #15317e;
+  color: #002147;
   transition: .5s;
 }
 #tempaltemo_footer .border-light { border-color: #2d343f !important;}

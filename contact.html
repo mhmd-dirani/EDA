@@ -14,6 +14,52 @@
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap" />
   <link rel="stylesheet" href="assets/css/fontawesome.min.css" />
+  
+  <style>
+    /* Custom styles for dark theme */
+    body.bg-dark {
+      color: #efe9db;
+    }
+
+    body.bg-dark h1, 
+    body.bg-dark h2, 
+    body.bg-dark h3, 
+    body.bg-dark .h1, 
+    body.bg-dark .h2, 
+    body.bg-dark .h3 {
+      color: #ad9476;
+    }
+
+    body.bg-dark p {
+      color: #efe9db;
+    }
+
+    /* Custom styles for dark contact form */
+    #contact-form .form-control {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-color: rgba(173, 148, 118, 0.2);
+      color: #efe9db;
+    }
+    
+    #contact-form .form-control:focus {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: #ad9476;
+      color: #efe9db;
+      box-shadow: 0 0 0 0.2rem rgba(173, 148, 118, 0.25);
+    }
+
+    #contact-form .form-control::placeholder {
+      color: rgba(239, 233, 219, 0.5);
+    }
+
+    /* Map container style for dark theme */
+    #mapid {
+      border: 2px solid #ad9476;
+      border-radius: 8px;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+  </style>
 </head>
 
 <!-- Partials loader (unchanged) -->
@@ -48,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<body>
+<body class="bg-dark">
   <!-- Top Nav -->
   <div data-include="partials/top_nav.html"></div>
 
@@ -63,49 +109,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   <!-- Page intro -->
-  <div class="container-fluid bg-light py-5">
+  <div class="container-fluid bg-dark py-5">
     <div class="col-md-6 m-auto text-center">
-      <h1 class="h1">Contact Us</h1>
-      <p>We’re here to help. Send us a message and we’ll reply shortly.</p>
+      <h1 style="color: #efe9db;">Contact Us</h1>
+      <p style="color: #efe9db;">We’re here to help. Send us a message and we’ll reply shortly.</p>
     </div>
   </div>
   
   <!-- Contact Form -->
-  <div class="container py-5">
-    <div class="row py-5">
+  <div class="container bg-dark py-1">
+    <div class="row py-1">
       <form id="contact-form"
             action="https://formspree.io/f/manljbnr"
             method="POST"
-            class="col-md-9 m-auto">
+            class="col-md-9 m-auto bg-dark p-1 rounded">
 
         <input type="hidden" name="_subject" value="New message from EDA website">
         <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
 
         <div class="row">
           <div class="form-group col-md-6 mb-3">
-            <label for="name">Name</label>
-            <input type="text" class="form-control mt-1" id="name" name="name" placeholder="Name" required>
+            <label for="name" style="color: #ad9476;">Name</label>
+            <input type="text"  class="form-control mt-1" id="name" name="name" placeholder="Your name" required>
           </div>
           <div class="form-group col-md-6 mb-3">
-            <label for="email">Email</label>
-            <input type="email" class="form-control mt-1" id="email" name="email" placeholder="Email" required>
+            <label for="email" style="color: #ad9476;">Email</label>
+            <input type="email" class="form-control mt-1" id="email" name="email" placeholder="Your email" required>
           </div>
         </div>
 
         <div class="mb-3">
-          <label for="subject">Subject</label>
-          <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="Subject" required>
+          <label for="subject" style="color: #ad9476;">Subject</label>
+          <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="Your subject" required>
         </div>
 
         <div class="mb-3">
-          <label for="message">Message</label>
-          <textarea class="form-control mt-1" id="message" name="message" placeholder="Message" rows="8" required></textarea>
+          <label for="message" style="color: #ad9476;">Message</label>
+          <textarea class="form-control mt-1" id="message" name="message" placeholder="Your message" rows="8" required></textarea>
         </div>
 
         <div class="row align-items-center">
           <div class="col">
-            <button type="submit" class="btn btn-warning text-dark btn-lg px-3">Send Message</button>
-            <span id="contact-status" class="ms-3"></span>
+            <button type="submit" class="btn btn-warning text-white btn-lg px-3">Send Message</button>
+            <span id="contact-status" class="ms-3" style="color: #efe9db;"></span>
           </div>
         </div>
       </form>
@@ -140,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   <!-- Leaflet CSS -->
-  <h1 style="text-align: center;" >Welcome Any Time</h1>
+  <h1 style="text-align: center;" >You’re Welcome Any Time</h1>
   <link rel="stylesheet"
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="

@@ -2,4 +2,32 @@
 <script src="assets/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/templatemo.js"></script>
 <script src="assets/js/custom.js"></script>
+<!-- Choices.js for custom-styled selects (used on shop sort-select) -->
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+<script>
+	// Initialize Choices for the shop sort select if present.
+	// The partials loader appends scripts after DOMContentLoaded and external scripts
+	// may not have loaded yet. Wait for Choices to be available and then init.
+	(function(){
+		function initChoices(){
+			try{
+				const el = document.getElementById('sort-select');
+				if(!el) return; // nothing to do
+
+				if(typeof Choices === 'undefined'){
+					// try again shortly until Choices script loads
+					setTimeout(initChoices, 50);
+					return;
+				}
+
+				// prevent double initialization
+				if(!el.dataset.choicesInit){
+					new Choices(el, { searchEnabled: false, shouldSort: false, itemSelectText: '' });
+					el.dataset.choicesInit = '1';
+				}
+			}catch(e){ console.warn('Choices init failed', e); }
+		}
+		initChoices();
+	})();
+</script>
 <!-- End scripts.html -->

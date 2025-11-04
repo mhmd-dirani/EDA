@@ -1,3 +1,55 @@
 /*
 Custom Css
 */
+/* Load Choices.js styles (via CDN) so we can theme the custom select dropdown */
+@import url('https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css');
+
+/* Theme Choices dropdown to use the site brown for hover/selection */
+.choices__list--dropdown .choices__item--selectable.is-highlighted,
+.choices__list--dropdown .choices__item--selectable:hover {
+	background: #ad9476;
+	color: #ad765b;
+}
+.choices__list--dropdown .choices__item--selectable {
+	color: #292929;
+}
+
+/* Make the trigger text color match page-link color */
+.choices__inner {
+	border-color: #8D765B;
+}
+
+/* Services hover effect styles */
+.services-icon-wap {
+    position: relative;
+    overflow: hidden;
+    border-radius: 25px;
+}
+
+.services-hover-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(173, 148, 118, 0.9);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 20px;
+    text-align: center;
+    border-radius: 25px;
+}
+
+.services-icon-wap:hover .services-hover-text {
+    opacity: 1;
+}
+
+.services-icon-wap:hover .h1,
+.services-icon-wap:hover h2.h5 {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
