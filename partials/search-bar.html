@@ -5,8 +5,8 @@
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
 
-    <!-- Point the form to shop.html -->
-    <form action="shop.html" method="get" class="modal-content modal-body border-0 p-0">
+    <!-- Point the form to shop.html (root-relative so it works from any folder) -->
+    <form action="/shop.html" method="get" class="modal-content modal-body border-0 p-0">
       <div class="input-group mb-2">
         <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
         <button type="submit" class="input-group-text bg-success text-light">
