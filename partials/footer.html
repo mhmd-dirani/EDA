@@ -50,37 +50,41 @@
               method="POST"
               class="input-group mb-2 mt-3">
           <input type="email"
-                class="form-control bg-dark border-light text-light"
-                name="email"
-                placeholder="Email address"
-                required>
+                 class="form-control bg-dark border-light text-light"
+                 name="email"
+                 placeholder="Email address"
+                 required>
           <button class="input-group-text btn-warning text-dark" type="submit">Subscribe</button>
         </form>
         <small id="subscribe-status" class="text-light-50"></small>
 
         <script>
-        document.getElementById('subscribe-form').addEventListener('submit', async (e) => {
-          e.preventDefault();
-          const form = e.target;
-          const status = document.getElementById('subscribe-status');
-          status.textContent = 'Subscribing…';
+          document.getElementById('subscribe-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const status = document.getElementById('subscribe-status');
+            status.textContent = 'Subscribing…';
 
-          try {
-            const res = await fetch(form.action, {
-              method: 'POST',
-              body: new FormData(form),
-              headers: { 'Accept': 'application/json' }
-            });
-            if (res.ok) {
-              form.reset();
-              status.textContent = 'You’re in! Check your inbox.';
-            } else {
-              status.textContent = 'Couldn’t subscribe. Try again.';
+            try {
+              const res = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+              });
+              if (res.ok) {
+                form.reset();
+                status.textContent = 'You’re in! Check your inbox.';
+              } else {
+                status.textContent = 'Couldn’t subscribe. Try again.';
+              }
+            } catch {
+              status.textContent = 'Network error — please try again.';
             }
-          } catch {
-            status.textContent = 'Network error — please try again.';
-          }
-        });
+          });
         </script>
+      </div> <!-- /.col-md-4 -->
 
+    </div> <!-- /.row -->
+  </div> <!-- /.container -->
+</footer>
 <!-- End Footer -->
