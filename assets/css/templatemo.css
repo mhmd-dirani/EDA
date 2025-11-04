@@ -54,9 +54,9 @@ body, ul, li, p, a, label, input, div {
 .text-muted { color: #bcbcbc !important;}
 .text-success { color: #f0dc82   !important;}
 .text-light { color: #cfd6e1 !important;}
-.bg-dark { background-color: #111154 !important;}
+.bg-dark { background-color: #15317e !important;}
 .bg-light { background-color: #e9eef5 !important;}
-.bg-black { background-color: #111154 !important;}
+.bg-black { background-color: #15317e !important;}
 .bg-success { background-color: #f0dc82   !important;}
 .btn-success {
   background-color: #f0dc82   !important;
@@ -70,7 +70,7 @@ body, ul, li, p, a, label, input, div {
 /* Nav */
 #templatemo_nav_top { min-height: 40px;}
 #templatemo_nav_top * { font-size: .9em !important;}
-#templatemo_main_nav a { color: #111154;}
+#templatemo_main_nav a { color: #15317e;}
 #templatemo_main_nav a:hover { color: #f0dc82  ;}
 #templatemo_main_nav .navbar .nav-icon { margin-right: 20px;}
 
@@ -150,7 +150,7 @@ body, ul, li, p, a, label, input, div {
   transition: .5s;
 }
 #tempaltemo_footer ul.footer-icons li:hover i {
-  color: #111154;
+  color: #15317e;
   transition: .5s;
 }
 #tempaltemo_footer .border-light { border-color: #2d343f !important;}
