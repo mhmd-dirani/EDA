@@ -236,7 +236,14 @@
     const clearBtn   = () => document.getElementById('clear-filters');
 
     const products   = JSON.parse(document.getElementById('products-data').textContent.trim());
-    const categories = ['All', ...new Set(products.map(p => p.category))];
+    // Ensure certain site-wide categories always appear in the nav even when
+    // there are no products for them (so footer links like "Scarf" and
+    // "Clutch" show an empty-state instead of disappearing).
+    const forcedCategories = ['Clutch', 'Scarf'];
+    const categories = ['All', ...Array.from(new Set([
+      ...products.map(p => p.category),
+      ...forcedCategories
+    ]))];
     const colors     = [...new Set(products.flatMap(p => p.colors))].sort();
     const pageSize   = 9;
 
@@ -323,8 +330,27 @@
           ? `Results for "${query.trim()}"`
           : (selectedCategory === 'All' ? 'All Products' : selectedCategory);
 
-      grid().innerHTML = slice.map(cardHtml).join('') ||
-        `<div class="p-5 text-center text-muted">No products found.</div>`;
+      if (slice.length) {
+        grid().innerHTML = slice.map(cardHtml).join('');
+      } else {
+        // Friendly empty-state with CTA for known categories
+        let emptyHtml = `<div class="p-5 text-center text-muted">No products found.</div>`;
+        if (selectedCategory && selectedCategory !== 'All') {
+          const cat = selectedCategory;
+          const catLower = (cat || '').toLowerCase();
+          // handle simple pluralization for user-facing message
+          let label = catLower;
+          if (catLower === 'scarf') label = 'Scarves';
+          else if (catLower === 'clutch') label = 'Clutches';
+
+          emptyHtml = `
+            <div class="p-5 text-center text-muted">
+              <p class="mb-3">${label} are out of stock now — Contact us to request this item.</p>
+              <a class="btn btn-success btn-lg" href="contact.html">Contact us</a>
+            </div>`;
+        }
+        grid().innerHTML = emptyHtml;
+      }
 
       pager().innerHTML = Array.from({length: pages}, (_,i) =>
         `<li class="page-item${i+1===currentPage?' active':''}">
@@ -355,7 +381,11 @@
       if (fromQuery) {
         query = fromQuery;
         selectedCategory = 'All';
-      } else if (fromCategory && categories.includes(fromCategory)) {
+      } else if (fromCategory) {
+        // Allow categories passed in the URL even if they don't exist in the
+        // current product list. This makes footer links like "?category=Scarf"
+        // show the friendly "No products found." message instead of falling
+        // back to "All Products" which hides the intended state.
         selectedCategory = fromCategory;
       }
 
