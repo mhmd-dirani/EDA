@@ -296,10 +296,12 @@
     function filteredProducts(){
       let arr = [...products];
 
-      if (query && selectedCategory !== 'All') selectedCategory = 'All';
-      if (selectedCategory !== 'All') arr = arr.filter(p => p.category === selectedCategory);
-      if (conditions.size) arr = arr.filter(p => conditions.has(p.condition));
-      if (selectedColor) arr = arr.filter(p => p.colors.includes(selectedColor));
+  if (query && selectedCategory !== 'All') selectedCategory = 'All';
+  if (selectedCategory !== 'All') arr = arr.filter(p => p.category === selectedCategory);
+  // Normalize condition matching to lowercase so product.condition casing
+  // doesn't break the filter (e.g., "New" vs "new").
+  if (conditions.size) arr = arr.filter(p => conditions.has((p.condition || '').toLowerCase()));
+  if (selectedColor) arr = arr.filter(p => p.colors.includes(selectedColor));
 
       const q = (query || '').trim().toLowerCase();
       if (q) {
@@ -330,25 +332,53 @@
           ? `Results for "${query.trim()}"`
           : (selectedCategory === 'All' ? 'All Products' : selectedCategory);
 
+      // Helper: products in the selected category (if any)
+      const inSelectedCategory = selectedCategory && selectedCategory !== 'All'
+        ? products.filter(p => p.category === selectedCategory)
+        : [];
+
       if (slice.length) {
         grid().innerHTML = slice.map(cardHtml).join('');
       } else {
-        // Friendly empty-state with CTA for known categories
-        let emptyHtml = `<div class="p-5 text-center text-muted">No products found.</div>`;
-        if (selectedCategory && selectedCategory !== 'All') {
-          const cat = selectedCategory;
-          const catLower = (cat || '').toLowerCase();
-          // handle simple pluralization for user-facing message
-          let label = catLower;
-          if (catLower === 'scarf') label = 'Scarves';
-          else if (catLower === 'clutch') label = 'Clutches';
+        // Determine active filters (category, color, condition, query)
+        const hasActiveFilters = (selectedCategory && selectedCategory !== 'All') ||
+                                 !!selectedColor ||
+                                 !!(query && query.trim()) ||
+                                 conditions.size > 0;
 
+        let emptyHtml = `<div class="p-5 text-center text-muted">No products found.</div>`;
+
+        // Case 1: no products in the entire catalog
+        if (products.length === 0) {
           emptyHtml = `
             <div class="p-5 text-center text-muted">
-              <p class="mb-3">${label} are out of stock now — Contact us to request this item.</p>
+              <p class="mb-3">No products yet — Contact us to request an item or commission a custom piece.</p>
+              <a class="btn btn-success btn-lg" href="contact.html">Contact us</a>
+            </div>`;
+
+        // Case 2: White Dress category with used or color filter → simple message
+        } else if (selectedCategory === 'White Dress' && (selectedColor || conditions.has('used'))) {
+          emptyHtml = `<div class="p-5 text-center text-muted">No products to be shown.</div>`;
+
+        // Case 3: color or condition filter applied — offer custom piece
+        } else if (selectedColor || conditions.size > 0 || (query && query.trim())) {
+          emptyHtml = `
+            <div class="p-5 text-center text-muted">
+              <p class="mb-3">No products found.</p>
+              <p>We would be happy to create a custom piece just for you! Please contact us to discuss your ideas.</p>
+              <a class="btn btn-success btn-lg" href="contact.html">Contact us</a>
+            </div>`;
+
+        // Case 4: any category selected (including forced categories) — offer custom piece
+        } else if (selectedCategory && selectedCategory !== 'All') {
+          emptyHtml = `
+            <div class="p-5 text-center text-muted">
+              <p class="mb-3">No products found.</p>
+              <p>We would be happy to create a custom piece just for you! Please contact us to discuss your ideas.</p>
               <a class="btn btn-success btn-lg" href="contact.html">Contact us</a>
             </div>`;
         }
+
         grid().innerHTML = emptyHtml;
       }
 
@@ -434,7 +464,15 @@
       const cond = e.target.closest('[data-filter-condition]');
       if (cond){
         const v = cond.dataset.filterCondition;
-        conditions.has(v) ? conditions.delete(v) : conditions.add(v);
+        // Make condition badges single-select: selecting one clears the others.
+        if (conditions.has(v)) {
+          // toggle off if already selected
+          conditions.delete(v);
+        } else {
+          // clear any other condition and select this one
+          conditions.clear();
+          conditions.add(v);
+        }
         currentPage = 1;
         render();
       }
