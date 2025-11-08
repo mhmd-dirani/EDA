@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Redirect legacy /contact.html to pretty /Contact URL -->
+  <script>
+    (function(){
+      var p=(location.pathname||'').toLowerCase();
+      if(p.endsWith('/contact.html')){
+        var dest='/Contact'+(location.search||'')+(location.hash||'');
+        location.replace(dest);
+      }
+    })();
+  </script>
+  <noscript><meta http-equiv="refresh" content="0; url=/Contact"></noscript>
   <title>EDA — Contact Us</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />

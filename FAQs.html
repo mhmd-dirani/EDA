@@ -2,7 +2,18 @@
 <html lang="en">
 
 <head>
-    <title>EDA</title>
+        <!-- Redirect legacy /FAQs.html to pretty /FAQs URL -->
+        <script>
+            (function(){
+                var p=(location.pathname||'').toLowerCase();
+                if(p.endsWith('/faqs.html')){
+                    var dest='/FAQs'+(location.search||'')+(location.hash||'');
+                    location.replace(dest);
+                }
+            })();
+        </script>
+        <noscript><meta http-equiv="refresh" content="0; url=/FAQs"></noscript>
+        <title>EDA</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 

@@ -2,7 +2,18 @@
 <html lang="en">
 
 <head>
-    <title>EDA</title>
+        <!-- Redirect pretty URL: ensure /about.html becomes /About (preserve query/hash) -->
+        <script>
+            (function(){
+                var p = (location.pathname||'').toLowerCase();
+                if (p.endsWith('/about.html')) {
+                    var dest = '/About' + (location.search||'') + (location.hash||'');
+                    location.replace(dest);
+                }
+            })();
+        </script>
+        <noscript><meta http-equiv="refresh" content="0; url=/About"></noscript>
+        <title>EDA</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 

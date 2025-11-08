@@ -1,20 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="refresh" content="0; url=/contact.html">
-  <title>Redirecting…</title>
-  <script>
-    (function(){
-      var target = '/contact.html' + (window.location.search || '') + (window.location.hash || '');
-      window.location.replace(target);
-    })();
-  </script>
-  <noscript>
-    <meta http-equiv="refresh" content="0; url=/contact.html">
-  </noscript>
+  <title>EDA — Contact Us</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="apple-touch-icon" href="/assets/img/logo_01.png" />
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/img/logo_01.png" />
+
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/assets/css/templatemo.css" />
+  <link rel="stylesheet" href="/assets/css/custom.css" />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap" />
+  <link rel="stylesheet" href="/assets/css/fontawesome.min.css" />
+  
+  <style>
+    /* Custom styles for dark theme */
+    body.bg-dark {
+      color: #efe9db;
+    }
+
+    body.bg-dark h1, 
+    body.bg-dark h2, 
+    body.bg-dark h3, 
+    body.bg-dark .h1, 
+    body.bg-dark .h2, 
+    body.bg-dark .h3 {
+      color: #ad9476;
+    }
+
+    body.bg-dark p {
+      color: #efe9db;
+    }
+
+    /* Custom styles for dark contact form */
+    #contact-form .form-control {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-color: rgba(173, 148, 118, 0.2);
+      color: #efe9db;
+    }
+    
+    #contact-form .form-control:focus {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: #ad9476;
+      color: #efe9db;
+      box-shadow: 0 0 0 0.2rem rgba(173, 148, 118, 0.25);
+    }
+
+    #contact-form .form-control::placeholder {
+      color: rgba(239, 233, 219, 0.5);
+    }
+
+    /* Map container style for dark theme */
+    #mapid {
+      border: 2px solid #ad9476;
+      border-radius: 8px;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+  </style>
 </head>
-<body>
-  <p>Redirecting to Contact… <a href="/contact.html">Continue</a></p>
-</body>
-</html>
+
+<!-- Partials loader (unchanged) -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  (async () => {
+    const placeholders = document.querySelectorAll('[data-include]');
+    for (const el of placeholders) {
+      const url = el.getAttribute('data-include');
+      try {
+        const res = await fetch(url, { cache: 'no-cache' });
+        if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
+        const html = await res.text();
+        const tmp = document.createElement('div');
+        tmp.innerHTML = html;
+
+        // Execute <script> tags inside partials
+        for (const oldScript of tmp.querySelectorAll('script')) {
+          const s = document.createElement('script');
+          if (oldScript.src) s.src = oldScript.src;
+          else s.textContent = oldScript.textContent;
+          document.body.appendChild(s);
+          oldScript.remove();
+        }
+        el.replaceWith(...tmp.childNodes);
+      } catch (e) {
+        console.error('Include failed:', url, e);
+        el.innerHTML = `<!-- include failed: ${url} -->`;
+      }
+    }
+  })();
+});
+</script>
+
+<body class="bg-dark">
+  <!-- Top Nav -->
+  <div data-include="/partials/top_nav.html"></div>
+
+  <!-- Header -->
+  <div data-include="/partials/header.html"></div>
+
+  <!-- Search Bar -->
+  <div data-include="/partials/search-bar.html"></div>
+
+
+
+
+  <!-- Page intro -->
+  <div class="container-fluid bg-dark py-5">
+    <div class="col-md-6 m-auto text-center">
+      <h1 style="color: #efe9db;">Contact Us</h1>
+      <p style="color: #efe9db;">We’re here to help. Send us a message and we’ll reply shortly.</p>
+    </div>
+  </div>
+  
+  <!-- Contact Form -->
+  <div class="container bg-dark py-1">
+    <div class="row py-1">
+      <form id="contact-form"
+            action="https://formspree.io/f/manljbnr"
+            method="POST"
+            class="col-md-9 m-auto bg-dark p-1 rounded">
+
+        <input type="hidden" name="_subject" value="New message from EDA website">
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+        <div class="row">
+          <div class="form-group col-md-6 mb-3">
+            <label for="name" style="color: #ad9476;">Name</label>
+            <input type="text"  class="form-control mt-1" id="name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="form-group col-md-6 mb-3">
+            <label for="email" style="color: #ad9476;">Email</label>
+            <input type="email" class="form-control mt-1" id="email" name="email" placeholder="Your email" required>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="subject" style="color: #ad9476;">Subject</label>
+          <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="Your subject" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="message" style="color: #ad9476;">Message</label>
+          <textarea class="form-control mt-1" id="message" name="message" placeholder="Your message" rows="8" required></textarea>
+        </div>
+
+        <div class="row align-items-center">
+          <div class="col">
+            <button type="submit" class="btn btn-warning text-white btn-lg px-3">Send Message</button>
+            <span id="contact-status" class="ms-3" style="color: #efe9db;"></span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <script>
+      document.getElementById('contact-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const status = document.getElementById('contact-status');
+        status.textContent = 'Sending…';
+
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            form.reset();
+            status.textContent = 'Thank you! Your message has been sent.';
+          } else {
+            status.textContent = 'Oops! Something went wrong. Please try again.';
+          }
+        } catch {
+          status.textContent = 'Network error — please try again.';
+        }
+      });
+  </script>
+
+
+  <!-- Leaflet CSS -->
+  <h1 style="text-align: center;" >You’re Welcome Any Time</h1>
+  <link rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin="" />
+
+  <!-- Map -->
+  <div id="mapid" style="width:100%;height:300px;"></div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin=""></script>
+  <script>
+    // Center on EDA (Ansar)
+    const lat = 33.395791, lng = 35.332800;
+    const mymap = L.map('mapid', { center:[lat,lng], zoom:15, scrollWheelZoom:false, touchZoom:false });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom:19,
+      attribution:'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+    }).addTo(mymap);
+    L.marker([lat,lng]).addTo(mymap).bindPopup('<b>EDA</b><br>Our Location.').openPopup();
+  </script>
+
+  <!-- Footer -->
+  <div data-include="/partials/footer.html"></div>
+  <div data-include="/partials/scripts.html"></div>

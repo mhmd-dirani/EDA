@@ -1,20 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="refresh" content="0; url=/about.html">
-  <title>Redirecting…</title>
-  <script>
-    (function(){
-      var target = '/about.html' + (window.location.search || '') + (window.location.hash || '');
-      window.location.replace(target);
-    })();
-  </script>
-  <noscript>
-    <meta http-equiv="refresh" content="0; url=/about.html">
-  </noscript>
+    <title>EDA</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="/assets/img/logo_01.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/img/logo_01.png">
+
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/templatemo.css">
+    <link rel="stylesheet" href="/assets/css/custom.css">
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="/assets/css/fontawesome.min.css">
+
 </head>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  (async () => {
+    const placeholders = document.querySelectorAll('[data-include]');
+    for (const el of placeholders) {
+      const url = el.getAttribute('data-include');
+      try {
+        const res = await fetch(url, { cache: 'no-cache' });
+        if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
+        const html = await res.text();
+
+        const tmp = document.createElement('div');
+        tmp.innerHTML = html;
+
+        // Make <script> tags inside partials execute
+        for (const oldScript of tmp.querySelectorAll('script')) {
+          const s = document.createElement('script');
+          if (oldScript.src) s.src = oldScript.src;
+          else s.textContent = oldScript.textContent;
+          document.body.appendChild(s);
+          oldScript.remove();
+        }
+
+        el.replaceWith(...tmp.childNodes);
+      } catch (e) {
+        console.error('Include failed:', url, e);
+        el.innerHTML = `<!-- include failed: ${url} -->`;
+      }
+    }
+  })();
+});
+</script>
+
 <body>
-  <p>Redirecting to About… <a href="/about.html">Continue</a></p>
+    <!-- Start Top Nav -->
+    <div data-include="/partials/top_nav.html"></div>
+    <!-- Close Top Nav -->
+
+    <!-- Start Header -->
+    <div data-include="/partials/header.html"></div>
+    <!-- Close Header -->
+
+    <!-- Start Search Bar -->
+    <div data-include="/partials/search-bar.html"></div>
+    <!-- Close Search Bar -->
+
+
+  <section class="py-5 wow fadeIn" data-wow-delay="0.3s" style="background-color: #f8f9fa;">
+    <div class="container">
+      <div class="row align-items-center">
+        
+        <!-- Text Content -->
+        <div class="col-lg-6 pt-lg-5">
+          <div class="bg-white rounded-top shadow-sm p-5 mt-lg-5">
+            <h1 class="fs-5 fw-medium text-brown mb-2">About Me</h1>
+            <h2 class="display-6 mb-4 text-offwhite">Where Passion Meets Craft</h2>
+
+            <p class="mb-4">
+              I began this journey at the age of 28 — as a passionate fashion designer and a proud mother of two.
+              What started as a small project fueled by love and determination has steadily grown into a creative venture driven by purpose and vision.
+            </p>
+
+            <p class="mb-0">
+              Every design I create carries a touch of imagination, dedication, and heart — 
+              a reflection of the beauty I hope to share with every piece you wear.
+            </p>
+          </div>
+        </div>
+
+        <!-- Image -->
+        <div class="col-lg-6 text-center">
+          <img class="img-fluid rounded wow fadeInUp" data-wow-delay="0.5s" src="/assets/img/ME.jpg" alt="About Enaam Dirani Atelier" style="max-width: 85%;">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+    <!-- Close Banner -->
+
+    <!-- Start Section -->
+    <section class="container py-5">
+        <div class="row text-center pt-5 pb-3">
+            <div class="col-lg-6 m-auto">
+                <h1 class="h1">Our Services</h1>
+                <p>
+                    What We Offer to Our Valued Customers.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-6 col-lg-3 pb-5">
+                <div class="h-100 py-5 services-icon-wap shadow">
+                    <div class="h1 text-success text-center"><i class="fa fa-female fa-lg"></i></div>
+                    <h2 class="h5 mt-4 text-center">Tailored Designs</h2>
+                    <div class="services-hover-text">Each piece is tailor-made for you, with love and attention to detail.</div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 pb-5">
+                <div class="h-100 py-5 services-icon-wap shadow">
+                    <div class="h1 text-success text-center"><i class="fa fa-cogs fa-lg"></i></div>
+                    <h2 class="h5 mt-4 text-center">Custom sizes</h2>
+                    <div class="services-hover-text">Complementary size and length adjustments.</div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 pb-5">
+                <div class="h-100 py-5 services-icon-wap shadow">
+                    <div class="h1 text-success text-center"><i class="fa fa-paint-brush"></i></div>
+                    <h2 class="h5 mt-4 text-center">Custom Colors</h2>
+                    <div class="services-hover-text">Choose the color that suits you best.</div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 pb-5">
+                <div class="h-100 py-5 services-icon-wap shadow">
+                    <div class="h1 text-success text-center"><i class="fa fa-clock"></i></div>
+                    <h2 class="h5 mt-4 text-center">Fast designs</h2>
+                    <div class="services-hover-text">Tell us the date you need it by, and we'll make it happen.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Section -->
+
+    <!-- Start Brands -->
+    <section class="bg-light py-5">
+        <div class="container my-4">
+            <div class="row text-center py-3">
+                <div class="col-lg-6 m-auto">
+                    <h1 style="color: #e0d5bf;text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);">Our Slogan</h1>
+                    <h3 style="color: #efe9db;">"Fashion is the armor to survive the reality of everyday life."</h3>
+                </div>
+                <div class="col-lg-9 m-auto tempaltemo-carousel">
+                    <div class="row d-flex flex-row">
+                        <!--Controls-->
+                        <div class="col-1 align-self-center">
+                            <a class="h1" href="#templatemo-slide-brand" role="button" data-bs-slide="prev">
+                                <i class="text-light fas fa-chevron-left"></i>
+                            </a>
+                        </div>
+                        <!--End Controls-->
+
+                        <!--Carousel Wrapper-->
+                        <div class="col">
+                            <div class="carousel slide carousel-multi-item pt-2 pt-md-1" id="templatemo-slide-brand" data-bs-ride="carousel">
+                                <!--Slides-->
+                                <div class="carousel-inner product-links-wap" role="listbox">
+
+                                    <!--First slide-->
+                                    <div class="carousel-item active">
+                                        <div class="row">
+                                            <h1 style="color: #fff; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);">Elegant</h1>
+                                        </div>
+                                    </div>
+                                    <!--End First slide-->
+
+                                    <!--Second slide-->
+                                    <div class="carousel-item">
+                                        <div class="row">
+                                            <h1 style="color: #fff; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);">Delicate</h1>
+                                        </div>
+                                    </div>
+                                    <!--End Second slide-->
+
+                                    <!--Third slide-->
+                                    <div class="carousel-item">
+                                        <div class="row">
+                                            <h1 style="color: #fff; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);">Ambitious</h1>
+                                        </div>
+                                    </div>
+                                    <!--End Third slide-->
+
+                                </div>
+                                <!--End Slides-->
+                            </div>
+                        </div>
+                        <!--End Carousel Wrapper-->
+
+                        <!--Controls-->
+                        <div class="col-1 align-self-center">
+                            <a class="h1" href="#templatemo-slide-brand" role="button" data-bs-slide="next">
+                                <i class="text-light fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                        <!--End Controls-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End Brands-->
+
+
+    <!-- Start Footer -->
+    <div data-include="/partials/footer.html"></div>
+    <!-- Close Footer -->
+
+    <!-- Start Script -->
+    <div data-include="/partials/scripts.html"></div>
+    <!-- End Script -->
 </body>
+
 </html>

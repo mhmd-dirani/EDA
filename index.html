@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Redirect to /Home to keep pretty URL, preserving query/hash; works on GitHub Pages -->
+  <script>
+    (function(){
+      var dest = '/Home' + (window.location.search || '') + (window.location.hash || '');
+      var p = (location.pathname || '').toLowerCase();
+      if (p === '/' || p === '/index.html') {
+        window.location.replace(dest);
+      }
+    })();
+  </script>
+  <noscript><meta http-equiv="refresh" content="0; url=/Home"></noscript>
   <title>EDA</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
