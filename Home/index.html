@@ -275,7 +275,7 @@
       const colors=(p.colors||[]).map(c=>`<span class="product-color-dot color-dot-${c.toLowerCase().replace(/\s+/g, '-') } rounded-circle ms-1"></span>`).join('');
       // Create the filename in the Dresses folder
       const filename = '/Dresses/' + p.title.replace(/\s+/g, '-') + '.html';
-      return `<div class="col-md-4">
+      return `<div class="col-6 col-md-4">
         <div class="card mb-4 product-wap rounded-0">
           <img class="card-img rounded-0 img-fluid" src="${p.image}" alt="${p.title}">
           <div class="card-body">
